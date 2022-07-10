@@ -51,8 +51,10 @@ void maquinaGasometro() {
       sensorsValues[MQ5] = readMQ5();
       sensorsValues[TEMT6000] = readTEMT6000();
       emergencyState = emergencyCheck();
-      estadoGasometro = DISPLAYING;
-      sensingTimer = millis();
+      if (sensorsValues[BMP180] != -2) {
+        estadoGasometro = DISPLAYING;
+        sensingTimer = millis();
+      }
       break;
     case PUBLISHING:
       break;

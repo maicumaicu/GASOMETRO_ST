@@ -1680,15 +1680,6 @@
   )
 
   (gr_rect (start 162.56 30.1244) (end 262.56 130.1244) (layer "B.Cu") (width 0.2) (fill none) (tstamp 82eb6e6a-a941-46fc-8582-89e370448a6e))
-  (dimension (type aligned) (layer "B.Cu") (tstamp e568b79a-3350-4b38-aa67-cc28d0574867)
-    (pts (xy 262.56 130.1244) (xy 212.56 130.1244))
-    (height -18.9736)
-    (gr_text "50.0000 mm" (at 237.56 147.298) (layer "B.Cu") (tstamp addcc5c1-7f6e-4549-8597-bce3784ae2ea)
-      (effects (font (size 1.5 1.5) (thickness 0.3)))
-    )
-    (format (units 3) (units_format 1) (precision 4))
-    (style (thickness 0.2) (arrow_length 1.27) (text_position_mode 0) (extension_height 0.58642) (extension_offset 0.5) keep_text_aligned)
-  )
 
   (segment (start 220.3196 110.3884) (end 220.3196 114.554) (width 1) (layer "B.Cu") (net 1) (tstamp 0e877285-c3cc-421e-af45-c983f5b21dea))
   (segment (start 216.4632 114.6048) (end 216.4588 114.6004) (width 1) (layer "B.Cu") (net 1) (tstamp 6a90da3a-9ee9-4886-b28f-d638d4d8eec9))

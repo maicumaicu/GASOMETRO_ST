@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name "ESP32")(type "Legacy")(uri "C:/Users/46700787/Downloads/ESP_para_KiCad/esp32-devkit-v1.lib")(options "")(descr ""))
+)

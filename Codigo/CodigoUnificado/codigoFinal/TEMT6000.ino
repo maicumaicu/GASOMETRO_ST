@@ -1,10 +1,11 @@
-void setupTEMT6000(){
-  pinMode(TEMT6000, INPUT); 
+void setupTEMT6000() {
+  pinMode(TEMT6000_PIN , INPUT);
 }
 
-int ReadTEMT6000(){
-  int light_value = analogRead(TEMT6000);
-  int light = map(gas, 0, 4095, 0, 100)
-  Serial.println(light);
+int readTEMT6000() {
+  int light_value = analogRead(TEMT6000_PIN );
+  int light = map(light_value, 0, 4095, 0, 100);
+  Serial.print(light);
+  Serial.println("%");
   return light;
 }

@@ -11,9 +11,10 @@ int BMPTimer;
 
 
 bool setupBMP180() {
-  if (bmp180.begin())
+  if (bmp180.begin()) {
     Serial.println("BMP180 iniciado correctamenten");
-  return true;
+    return true;
+  }
   else
   {
     Serial.println("Error al iniciar el BMP180");

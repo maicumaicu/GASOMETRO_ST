@@ -23,14 +23,21 @@ bool setupOLED()
     Serial.println(F("SSD1306 allocation failed"));
     return false;
   }
+  Serial.println(F("correcto"));
+  display.clearDisplay();
+  display.display();
   return true;
 }
 
-void emergencyState(int values*) {
+/*void emergencyState(int* values) {
 
-}
+  }*/
+  void cDisplay(){
+    display.clearDisplay();
+  }
+  
 
-void DisplayData(int values*) {
+void displayData(int *values) {
   DisplayBMP180(values[BMP180]);
   DisplayMQ7(values[MQ7]);
   DisplayMQ5(values[MQ5]);
@@ -38,10 +45,11 @@ void DisplayData(int values*) {
 }
 
 void DisplayBMP180(int value) {
+  //display.clearDisplay();
   display.setTextSize(1);
   display.setTextColor(SSD1306_WHITE);
-  display.setCursor(5, 28);
-  display.println("BMP: ");
+  display.setCursor(1, 28);
+  display.print("BMP: ");
   if (value == -1) {
     display.println("No disponible");
   } else {
@@ -53,8 +61,8 @@ void DisplayBMP180(int value) {
 void DisplayMQ5(int value) {
   display.setTextSize(1);
   display.setTextColor(SSD1306_WHITE);
-  display.setCursor(6, 28);
-  display.println("MQ5: ");
+  //display.setCursor(6, 28);
+  display.print("MQ5: ");
   display.println(value);
   display.display();
 }
@@ -62,8 +70,8 @@ void DisplayMQ5(int value) {
 void DisplayMQ7(int value) {
   display.setTextSize(1);
   display.setTextColor(SSD1306_WHITE);
-  display.setCursor(7, 28);
-  display.println("MQ7: ");
+  //display.setCursor(7, 28);
+  display.print("MQ7: ");
   display.println(value);
   display.display();
 }
@@ -71,8 +79,8 @@ void DisplayMQ7(int value) {
 void DisplayTEMT6000(int value) {
   display.setTextSize(1);
   display.setTextColor(SSD1306_WHITE);
-  display.setCursor(8, 28);
-  display.println("TEMT: ");
+  //display.setCursor(8, 28);
+  display.print("TEMT: ");
   display.println(value);
   display.display();
 }

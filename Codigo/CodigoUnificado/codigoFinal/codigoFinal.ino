@@ -5,7 +5,7 @@
 #include "time.h"
 #include "Arduino.h"
 
-#define SENSING_TIME 60000
+#define SENSING_TIME 300000
 
 #define BMP180 0
 #define MQ7 1
@@ -15,13 +15,14 @@
 #define MQ7_PIN 36
 #define MQ5_PIN  39
 #define TEMT6000_PIN  35
+#define BUZZER_PIN 19
 
 #define SETUP 0
 #define SENSING 1
 #define PUBLISHING 2
 #define DISPLAYING 3
 
-#define MQTT_HOST IPAddress(10, 162, 24, 31)
+#define MQTT_HOST IPAddress(10, 162, 24, 33)
 #define MQTT_PORT 1883
 #define MQTT_USERNAME "esp32"
 #define MQTT_PASSWORD "mirko15"
@@ -104,7 +105,7 @@ void maquinaGasometro() {
       readMQ5();
       //Setup de time
       configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);
-      //setupBuzzer();
+      setupBuzzer();
       bmpConfirmation = setupBMP180();
       oledConfirmation = setupOLED();
       estadoGasometro = SENSING;
@@ -112,7 +113,11 @@ void maquinaGasometro() {
     case SENSING:
       if (bmpConfirmation == true) {
         sensorsValues[BMP180] = readBMP180();
+        if(sensorsValues[BMP180] == 69){
+          ESP.restart();
+        }
       } else {
+        
         sensorsValues[BMP180] = -1;
         setupBMP180();
       }
@@ -133,14 +138,13 @@ void maquinaGasometro() {
       sensingTimer = millis();
       break;
     case DISPLAYING:
-
       if (oledConfirmation == true) {
-
+        displayData(sensorsValues);
         if (emergencyState == true) {
-          //setBuzzer();
-          //emergencyState();
+          runBuzzer();
+          //EmergencyState(sensorsValues);
         } else {
-          displayData(sensorsValues);
+          stopBuzzer();
         }
       } else {
         oledConfirmation = setupOLED();
@@ -155,7 +159,7 @@ void maquinaGasometro() {
 }
 
 bool emergencyCheck() {
-  if (sensorsValues[MQ7] >=  80 || sensorsValues[MQ7] >=  80) {
+  if (sensorsValues[MQ5] >=  10 || sensorsValues[MQ7] >=  10) {
     return true;
   } else {
     return false;

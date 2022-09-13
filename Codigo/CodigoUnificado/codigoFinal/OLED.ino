@@ -29,13 +29,13 @@ bool setupOLED()
   return true;
 }
 
-/*void emergencyState(int* values) {
+void EmergencyState(int* values) {
 
-  }*/
-  void cDisplay(){
-    display.clearDisplay();
-  }
-  
+}
+void cDisplay() {
+  display.clearDisplay();
+}
+
 
 void displayData(int *values) {
   DisplayBMP180(values[BMP180]);
